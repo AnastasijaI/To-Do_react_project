@@ -8,6 +8,8 @@ import { auth } from './Firebase/Firebase.config';
 import Home from './Pages/Home/Home';
 import Login from './Pages/Login/Login/Login';
 import SignUp from './Pages/Login/SignUp/SignUp';
+import Profiles from './Pages/Login/Profiles/Profiles';
+
 export const AuthContext = createContext(null)
 function App() {
   const [isAuth, setIsAuth] = useState(false)
@@ -31,6 +33,7 @@ function App() {
         <Route path='/home' element={<RequireAuth><Home /></RequireAuth>} />
         <Route path='/login' element={<Login />} />
         <Route path='/sign-up' element={<SignUp />} />
+        <Route path="/profile" element={<Profiles />} /> 
     </Routes>
     </AuthContext.Provider>
     </>

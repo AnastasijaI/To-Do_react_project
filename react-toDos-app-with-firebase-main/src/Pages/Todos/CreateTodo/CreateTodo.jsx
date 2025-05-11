@@ -100,6 +100,8 @@ const CreateTodo = () => {
           <div className="action">
             <img
               width={50}
+              style={{ cursor: "pointer" }}
+              onClick={() => navigate("/profile")}
               src={
                 loading
                   ? "https://www.commpartners.com/wp-content/plugins/wp-meta-seo/assets/images/white-loader.gif"
