@@ -8,8 +8,9 @@ import { auth, updateProfile } from '../../../Firebase/Firebase.config';
 import { AuthContext } from '../../../App';
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage } from "../../../Firebase/Firebase.config";
-import toast
- from "react-hot-toast";
+import toast from "react-hot-toast";
+import { EmailAuthProvider, reauthenticateWithCredential, updatePassword } from "firebase/auth";
+
 const Profiles = () => {
   const navigate = useNavigate();
   const user = auth.currentUser;
@@ -30,15 +31,29 @@ const Profiles = () => {
 
   const handleSave = async (field) => {
     try {
-      if (field === "displayName") {
+        if (field === "displayName") {
         await updateProfile(user, { displayName });
-      }
-      setEditingField(null);
-      window.location.reload();
+        setEditingField(null);
+        window.location.reload();
+        }
+
+        if (field === "password") {
+        const credential = EmailAuthProvider.credential(user.email, oldPassword);
+
+        await reauthenticateWithCredential(user, credential);
+
+        await updatePassword(user, newPassword);
+        toast.success("Password updated successfully.");
+        setEditingField(null);
+        setOldPassword("");
+        setNewPassword("");
+        }
     } catch (error) {
-      console.error("Error updating profile:", error);
+        console.error("Update failed:", error);
+        toast.error("Old password is incorrect or another error occurred.");
     }
-  };
+   };
+
 
     const handleImageUpload = async (e) => {
   const file = e.target.files[0];
@@ -46,22 +61,11 @@ const Profiles = () => {
 
   const storageRef = ref(storage, `avatars/${user.uid}/${file.name}`);
   try {
-    // 1. Upload the file
     await uploadBytes(storageRef, file);
-
-    // 2. Get the download URL
     const downloadURL = await getDownloadURL(storageRef);
-
-    // 3. Update profile photoURL
     await updateProfile(user, { photoURL: downloadURL });
-
-    // 4. Force refresh of auth user
     await auth.currentUser.reload();
-
-    // 5. Optional toast
     toast.success("Profile picture updated!");
-
-    // 6. Trigger re-render
     window.location.reload();
 
   } catch (error) {
@@ -134,24 +138,7 @@ const Profiles = () => {
           <div className="info">
             <p>
               <strong>Email:</strong>
-              {editingField === "email" ? (
-                <>
-                  <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
-                  <button className="btn-inline" onClick={() => handleSave("email")}>Save</button>
-                </>
-              ) : (
-                <>
-                  {user.email}
-                  <AiOutlineEdit className="edit-icon" onClick={() => {
-                    setEditingField("email");
-                    setEmail(user.email);
-                  }} />
-                </>
-              )}
+                {user.email}
             </p>
 
             <p>
