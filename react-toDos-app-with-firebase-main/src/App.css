@@ -63,7 +63,7 @@ table th {
   background-color: var(--primary-color);
   border: none;
   outline: none;
-  padding: 0.6rem 1rem;
+  padding: 0.4rem 0.7rem;
   color: var(--accent-color);
   border-radius: 4px;
   font-size: 1rem;

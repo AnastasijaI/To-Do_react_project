@@ -4,7 +4,7 @@ import React, { useContext, useState } from "react";
 import { useSendEmailVerification } from "react-firebase-hooks/auth";
 import toast from "react-hot-toast";
 import { AiOutlineLogout } from "react-icons/ai";
-import { BsSearch } from "react-icons/bs";
+import { IoMdAdd } from "react-icons/io";
 import { GoUnverified } from "react-icons/go";
 import { MdVerified } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
@@ -131,7 +131,7 @@ const CreateTodo = () => {
                 placeholder="Create ToDos"
               />
               <button className="btn" onClick={handleAddTodo}>
-                <BsSearch />
+                <IoMdAdd size={25} />
               </button>
             </div>
           </div>
