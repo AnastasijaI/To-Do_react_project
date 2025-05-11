@@ -1,0 +1,87 @@
+:root {
+  --primary-color: #0097e1;
+  --secondary-color: #121212;
+  --secondary-color-alt: #1d1d1d;
+  --accent-color: #fff;
+  --fonts: "Poppins", sans-serif;
+}
+
+*,
+*::after,
+*::before {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--fonts);
+  font-size: 16px;
+  background-color: var(--secondary-color);
+}
+
+a {
+  text-decoration: none;
+}
+li {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+table td,
+table th {
+  padding: 0.5rem;
+  border-bottom: 1px solid #1d1d1d;
+}
+/* custom classes */
+.container {
+  max-width: min(100% - 2rem, 1200px);
+  margin-inline: auto;
+}
+.colorize {
+  color: var(--primary-color);
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+.d-flex {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.btn,
+.btn-outline {
+  background-color: var(--primary-color);
+  border: none;
+  outline: none;
+  padding: 0.6rem 1rem;
+  color: var(--accent-color);
+  border-radius: 4px;
+  font-size: 1rem;
+  font-family: var(--fonts);
+  margin: 0.2rem;
+  transition: all 0.5s ease;
+  cursor: pointer;
+}
+.btn:active,
+.btn-outline:active {
+  transform: translateY(5px);
+}
+
+.btn-outline {
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+  background-color: transparent;
+}
+.text-danger {
+  color: salmon;
+}

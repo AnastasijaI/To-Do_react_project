@@ -1,0 +1,80 @@
+.login-container,
+.signUp-container {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+}
+.form-wrapper {
+  position: relative;
+  background: var(--secondary-color-alt);
+  width: 500px;
+  padding: 3rem;
+  color: var(--accent-color);
+}
+.form-wrapper p {
+  margin: 0.3rem 0rem;
+}
+.form-wrapper h1 {
+  margin: 1rem 0rem;
+  color: var(--accent-color);
+}
+.form-wrapper .input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  color: var(--accent-color);
+  margin-bottom: 0.5rem;
+}
+.form-wrapper input {
+  padding: 0.7rem;
+  font-size: 1rem;
+  font-family: var(--fonts);
+  border: none;
+  background-color: var(--secondary-color);
+  border: 1px solid var(--secondary-color);
+  border-radius: 5px;
+  margin: 0.2rem 0rem;
+  border-radius: 5px;
+  outline: none;
+  color: var(--accent-color);
+}
+.form-wrapper input:focus {
+  border: 1px solid var(--primary-color);
+}
+
+#socialLogin {
+  position: relative;
+  text-align: center;
+}
+#socialLogin .line {
+  text-align: center;
+  color: var(--primary-color);
+  font-weight: bold;
+  margin: 1rem 0rem;
+  position: relative;
+}
+#socialLogin .line::after,
+#socialLogin .line::before {
+  content: "";
+  width: 45%;
+  height: 1px;
+  background: var(--primary-color);
+  display: block;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+#socialLogin .line::before {
+  right: 0%;
+}
+#socialLogin .btn-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.btn-group button {
+  display: grid;
+  place-items: center;
+}
