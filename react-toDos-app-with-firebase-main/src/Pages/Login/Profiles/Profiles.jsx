@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { auth, updateProfile } from '../../../Firebase/Firebase.config';
 import { AuthContext } from '../../../App';
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { storage } from "../../../Firebase/Firebase.config";
+import { storage } from "../../../Firebase/FirebaseStorage.config";
 import toast
  from "react-hot-toast";
 const Profiles = () => {
@@ -42,9 +42,10 @@ const Profiles = () => {
 
     const handleImageUpload = async (e) => {
   const file = e.target.files[0];
+  console.log(file)
   if (!file) return;
 
-  const storageRef = ref(storage, `avatars/${user.uid}/${file.name}`);
+  const storageRef = ref(storage, `profile/${user.uid}.png`);
   try {
     // 1. Upload the file
     await uploadBytes(storageRef, file);
