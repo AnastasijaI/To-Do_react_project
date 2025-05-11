@@ -7,7 +7,8 @@ import { useNavigate } from "react-router-dom";
 import { auth, updateProfile } from '../../../Firebase/Firebase.config';
 import { AuthContext } from '../../../App';
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { storage } from "../../../Firebase/Firebase.config";
+import { storage } from "../../../Firebase/FirebaseStorage.config";
+import { EmailAuthProvider, reauthenticateWithCredential, updatePassword } from "firebase/auth";
 import toast
  from "react-hot-toast";
 const Profiles = () => {
@@ -16,7 +17,6 @@ const Profiles = () => {
   const { loading, setIsAuth } = useContext(AuthContext);
   const [editingField, setEditingField] = useState(null);
   const [displayName, setDisplayName] = useState(user?.displayName || "");
-  const [email, setEmail] = useState(user?.email || "");
   const [newPassword, setNewPassword] = useState("");
   const [oldPassword, setOldPassword] = useState("");
   const fileInputRef = useRef(null);
